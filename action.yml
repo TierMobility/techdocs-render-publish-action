@@ -59,7 +59,7 @@ runs:
           print("Empty `metadata.name` in `${{ inputs.path }}`")
           sys.exit(1)
         print(f"::set-output name=name::{name}")
-        namepsace = entity["metadata"].get("namespace", "default")
+        namespace = entity["metadata"].get("namespace", "default")
         if not namespace: 
           print("Empty `metadata.namespace` in `${{ inputs.path }}`")
           sys.exit(1)
