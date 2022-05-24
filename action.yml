@@ -45,7 +45,7 @@ runs:
         with path.open(mode="r") as fp:
           catalog_data = list(yaml.safe_load_all(fp))
 
-        kind_matches = [entity for entity in catalog_data if entitiy["kind"] == "${{ inputs.entity_kind }}"]
+        kind_matches = [entity for entity in catalog_data if entity["kind"] == "${{ inputs.entity_kind }}"]
         if len(kind_matches) > 1:
           print("Found more than one entity of kind `${{ inputs.entity_kind }}` in `${{ inputs.path }}`")
           sys.exit(1)
