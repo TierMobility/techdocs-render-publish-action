@@ -64,6 +64,7 @@ runs:
           print("Empty `metadata.namespace` in `${{ inputs.path }}`")
           sys.exit(1)
         print(f"::set-output name=namespace::{namespace}")
+        print(f"Detected entity `{namespace}/{name}` of kind `${{ inputs.entity_kind }}` in `${{ inputs.path }}`")
     - uses: actions/setup-node@v3
     - name: install-techdocs-cli
       shell: bash
