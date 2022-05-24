@@ -23,6 +23,9 @@ inputs:
     description: "AWS region of the bucket to publish to"
     required: false
     default: eu-central-1
+  google_application_credentials:
+    description: "Google Cloud authentication key"
+    required: false
 
 runs:
   using: "composite"
@@ -105,6 +108,7 @@ runs:
         AWS_REGION: ${{ inputs.aws_region }}
         AWS_ACCESS_KEY_ID: ${{ inputs.aws_access_key_id }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws_secret_access_key }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ inputs.google_application_credentials }}
     - id: stop-kroki
       name: Stop kroki containers
       shell: bash
