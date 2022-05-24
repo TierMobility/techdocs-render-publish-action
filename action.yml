@@ -97,7 +97,7 @@ runs:
     - id: publish-docs
       name: Publish rendered TechDocs to S3
       shell: bash
-      run: techdocs-cli publish --publisher-type awsS3 --storage-name ${{ inputs.bucket_name }} --entity ${{ steps.extract-entity-info.outputs.entity_namespace }}/${{ steps.extract-entity-info.outputs.entity_kind }}/${{ steps.extract-entity-info.outputs.entity_name }}
+      run: techdocs-cli publish --publisher-type awsS3 --storage-name ${{ inputs.bucket_name }} --entity ${{ steps.extract-entity-info.outputs.namespace }}/${{ inputs.entity_kind }}/${{ steps.extract-entity-info.outputs.name }}
       env:
         AWS_ACCESS_KEY_ID: ${{ inputs.access_key_id }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws_secret_access_key }}
