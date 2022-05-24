@@ -102,9 +102,9 @@ runs:
         cd $(dirname ${{ inputs.path }})
         techdocs-cli publish --publisher-type awsS3 --storage-name ${{ inputs.bucket_name }} --entity ${{ steps.extract-entity-info.outputs.namespace }}/${{ inputs.entity_kind }}/${{ steps.extract-entity-info.outputs.name }}
       env:
+        AWS_REGION: ${{ inputs.aws_region }}
         AWS_ACCESS_KEY_ID: ${{ inputs.access_key_id }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws_secret_access_key }}
-        AWS_REGION: ${{ inputs.aws_region }}
     - id: stop-kroki
       name: Stop kroki containers
       shell: bash
