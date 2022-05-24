@@ -3,7 +3,7 @@ description: Extracts Backstage entitiy information from a catalog file, renders
 
 inputs:
   path:
-    description: "Path to catalog file containing the techdocs-ref annoated entity"
+    description: "Path to catalog file containing the techdocs-ref annotated entity"
     required: false
     default: catalog-info.yaml
   entity_kind:
@@ -11,7 +11,7 @@ inputs:
     required: false
     default: Component
   bucket_name:
-    description: "Name of the AWS/Azure/GCS bucket to publish to"
+    description: "Name of the AWS/GCS bucket to publish to"
     required: false
   aws_access_key_id:
     description: "AWS S3 bucket access key ID"
