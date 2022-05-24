@@ -88,7 +88,9 @@ runs:
     - id: render-docs
       name: Render TechDocs
       shell: bash
-      run: techdocs-cli generate --no-docker --omitTechdocsCoreMkdocsPlugin --verbose
+      run: |
+        cd $(dirname ${{ inputs.path }})
+        techdocs-cli generate --no-docker --omitTechdocsCoreMkdocsPlugin --verbose
       env:
         KROKI_SERVER_URL: "http://127.0.0.1:8000"
         KROKI_DOWNLOAD_IMAGES: "1"
