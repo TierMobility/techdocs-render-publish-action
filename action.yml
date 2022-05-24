@@ -12,13 +12,13 @@ inputs:
     default: Component
   bucket_name:
     description: "Name of the AWS/Azure/GCS bucket to publish to"
-    required: true
+    required: false
   aws_access_key_id:
     description: "AWS S3 bucket access key ID"
-    required: true
+    required: false
   aws_secret_access_key:
     description: "AWS S3 bucket secret access key"
-    required: true
+    required: false
   aws_region:
     description: "AWS region of the bucket to publish to"
     required: false
