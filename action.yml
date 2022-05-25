@@ -7,11 +7,11 @@ inputs:
     required: false
     default: catalog-info.yaml
   entity_kind:
-    description: Enity kind that contains the techdocs-ref annotation
+    description: Entity kind that contains the techdocs-ref annotation
     required: false
     default: Component
   bucket_name:
-    description: Name of the AWS/GCS bucket to publish to
+    description: Name of the AWS S3/GCS bucket to publish to
     required: false
   aws_access_key_id:
     description: AWS S3 bucket access key ID
