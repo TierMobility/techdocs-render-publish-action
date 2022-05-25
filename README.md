@@ -74,6 +74,6 @@ jobs:
         with:
           path: catalog-info.yaml
           entity_kind: Component
-          bucket_name: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
+          bucket_name: ${{ secrets.TECHDOCS_GCS_BUCKET_NAME }}
           google_application_credentials: ${{ secrets.TECHDOCS_GOOGLE_APPLICATION_CREDENTIALS }}
 ```
