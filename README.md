@@ -75,7 +75,5 @@ jobs:
           path: catalog-info.yaml
           entity_kind: Component
           bucket_name: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
-          aws_access_key_id: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
-          aws_access_key_id: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
+          google_application_credentials: ${{ secrets.TECHDOCS_GOOGLE_APPLICATION_CREDENTIALS }}
 ```
