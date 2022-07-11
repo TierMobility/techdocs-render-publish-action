@@ -54,7 +54,7 @@ runs:
           sys.exit(1)
         elif len(kind_matches) == 0:
           print("Found no entity of kind `${{ inputs.entity_kind }}` in `${{ inputs.path }}`, skipping...")
-          print(f"::set-output name=skip::{true}")
+          print("::set-output name=skip::true")
           sys.exit(0)
         entity = kind_matches[0]
 
@@ -69,7 +69,7 @@ runs:
           sys.exit(1)
         print(f"::set-output name=namespace::{namespace}")
         print(f"Detected entity `{namespace}/{name}` of kind `${{ inputs.entity_kind }}` in `${{ inputs.path }}`")
-        print(f"::set-output name=skip::{false}")
+        print("::set-output name=skip::false")
     - uses: actions/setup-node@v3
     - name: install-techdocs-cli
       shell: bash
