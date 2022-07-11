@@ -54,6 +54,7 @@ runs:
           sys.exit(1)
         elif len(kind_matches) == 0:
           print("Found no entity of kind `${{ inputs.entity_kind }}` in `${{ inputs.path }}`, skipping...")
+          print(f"::set-output name=skip::{true}")
           sys.exit(0)
         entity = kind_matches[0]
 
@@ -68,30 +69,37 @@ runs:
           sys.exit(1)
         print(f"::set-output name=namespace::{namespace}")
         print(f"Detected entity `{namespace}/{name}` of kind `${{ inputs.entity_kind }}` in `${{ inputs.path }}`")
+        print(f"::set-output name=skip::{false}")
     - uses: actions/setup-node@v3
     - name: install-techdocs-cli
       shell: bash
+      if: steps.extract-entity-info.outputs.skip != 'true'
       run: sudo npm install -g @techdocs/cli
     - id: install-mkdocs
       name: Install mkdocs and custom mkdocs core plugin
       shell: bash
+      if: steps.extract-entity-info.outputs.skip != 'true'
       run: |
         pip install tier-mkdocs-techdocs-core==0.0.8
     - id: create-bridge-network
       name: Create docker bridge network
       shell: bash
+      if: steps.extract-entity-info.outputs.skip != 'true'
       run: docker network create --driver bridge kroki-net
     - id: start-kroki-mermaid
       name: Start kroki mermaid helper container
       shell: bash
+      if: steps.extract-entity-info.outputs.skip != 'true'
       run: docker run -d --rm --expose 8002 --name kroki-mermaid --network kroki-net yuzutech/kroki-mermaid
     - id: start-kroki-core
       name: Start kroki core container
       shell: bash
+      if: steps.extract-entity-info.outputs.skip != 'true'
       run: docker run -d --rm -p 8000:8000 -e KROKI_MERMAID_HOST=kroki-mermaid --name kroki-core --network kroki-net yuzutech/kroki
     - id: render-docs
       name: Render TechDocs
       shell: bash
+      if: steps.extract-entity-info.outputs.skip != 'true'
       run: |
         cd $(dirname ${{ inputs.path }})
         techdocs-cli generate --no-docker --omitTechdocsCoreMkdocsPlugin --verbose
@@ -101,6 +109,7 @@ runs:
     - id: publish-docs
       name: Publish rendered TechDocs to S3
       shell: bash
+      if: steps.extract-entity-info.outputs.skip != 'true'
       run: |
         cd $(dirname ${{ inputs.path }})
         techdocs-cli publish --publisher-type awsS3 --storage-name ${{ inputs.bucket_name }} --entity ${{ steps.extract-entity-info.outputs.namespace }}/${{ inputs.entity_kind }}/${{ steps.extract-entity-info.outputs.name }}
@@ -112,8 +121,10 @@ runs:
     - id: stop-kroki
       name: Stop kroki containers
       shell: bash
+      if: steps.extract-entity-info.outputs.skip != 'true'
       run: docker stop kroki-core kroki-mermaid
     - id: remove-bridge-network
       name: Remove docker bridge network
       shell: bash
+      if: steps.extract-entity-info.outputs.skip != 'true'
       run: docker network rm kroki-net
