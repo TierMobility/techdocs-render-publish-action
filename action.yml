@@ -53,8 +53,8 @@ runs:
           print("Found more than one entity of kind `${{ inputs.entity_kind }}` in `${{ inputs.path }}`")
           sys.exit(1)
         elif len(kind_matches) == 0:
-          print("Found no entity of kind `${{ inputs.entity_kind }}` in `${{ inputs.path }}`")
-          sys.exit(1)
+          print("Found no entity of kind `${{ inputs.entity_kind }}` in `${{ inputs.path }}`, skipping...")
+          sys.exit(0)
         entity = kind_matches[0]
 
         name = entity["metadata"]["name"]
