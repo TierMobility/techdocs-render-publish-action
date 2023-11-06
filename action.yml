@@ -35,7 +35,8 @@ runs:
       name: Install PyYAML library
       shell: bash
       run: |
-        pip install PyYAML==6.0
+        pip install --upgrade pip
+        pip install PyYAML==6.0.1
     - id: extract-entity-info
       name: Extract entity information from catalog file
       shell: python
