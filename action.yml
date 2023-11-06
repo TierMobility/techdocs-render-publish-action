@@ -30,13 +30,15 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/setup-python@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-verion: "3.11"
     - id: install-pyyaml
       name: Install PyYAML library
       shell: bash
       run: |
         pip install --upgrade pip
-        pip install PyYAML==6.0.1
+        pip install PyYAML==6.0
     - id: extract-entity-info
       name: Extract entity information from catalog file
       shell: python
